@@ -4,7 +4,14 @@
    </head>
    <body>
      <p>hello app chat</p>
-     <script src="/socket.io/socket.io.js"></script>
+     <form id="messageForm">
+       <input name="message" type="text" placeholder="enter a message"/>
+       <button type="submit">send</button>
+     </form>
+     <ol id="messageList">
+     </ol>
+     <script src="/socket.io/socket.io.js"></script> 
+     <script src="js/jquery-3.3.1.min.js"></script>
      <script src="js/index.js"></script>
    </body>
  </html>

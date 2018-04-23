@@ -18,12 +18,19 @@ io.on('connection', (socket) => {
     text: 'some text happend'
   })
   
-  socket.on('createEmail', (newEmail) => {
+  socket.on('createEmail', (newEmail, callback) => {
     console.log('createEmail', newEmail)
+    callback(null,'success')
   })
 
-  socket.emit('newMessage', generateMessage('Admin', 'Welcome to chat app'))
   socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'))
+
+  socket.on('createMessage', (message) => {
+    console.log('createMessage', message)
+    io.emit('newMessage', generateMessage(message.from, message.text))
+  })
+
+
 })
 
 app.use(express.static(publicPath))
